@@ -1,0 +1,8 @@
+body {
+    background: #ffffcc;
+    font-size: 1.1em;
+}
+
+.selected {
+    background: #bada55;
+}
