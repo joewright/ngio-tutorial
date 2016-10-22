@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
         </ul>
         
         <div *ngIf="selectedSandwich">
-            <h2>{{selectedSandwich.name}}</h2>
+            <marquee behavior="alternate" direction="right"><h2>{{selectedSandwich.name}}</h2></marquee>
             <label for="name">name:</label>
             <input type="text" name="name" [(ngModel)]="selectedSandwich.name" />
             <button (click)="onSelect()">&times;</button>
