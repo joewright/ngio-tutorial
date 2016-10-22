@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Sandwich } from "./sandwich";
+import { SandwichService } from "./sandwich.service";
 
 @Component({
     selector: 'my-app',
@@ -16,30 +18,25 @@ import { Sandwich } from "./sandwich";
             <my-sandwich-detail [sandwich]="selectedSandwich"></my-sandwich-detail>
         </div>
 
-    `
+    `,
+    providers: [SandwichService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'Teeter';
-    sandwiches = SANDWICHES;
-    selectedSandwich;
+    sandwiches: Sandwich[];
+    selectedSandwich: Sandwich;
+
+    constructor(private sandwichService: SandwichService) {}
+    
+    getSandwiches(): void {
+        this.sandwichService.getSandwiches().then(sandwiches => this.sandwiches = sandwiches);
+    }
+    
+    ngOnInit(): void {
+        this.getSandwiches();
+    }
+    
     onSelect(sandwich: Sandwich): void {
         this.selectedSandwich = sandwich;
     }
 }
-
-const SANDWICHES: Sandwich[] = [
-    { id: 1, name: 'BBQ Pork Sub'},
-    { id: 2, name: 'Breaded Chicken Sub'},
-    { id: 3, name: 'Club Sub'},
-    { id: 4, name: 'Grilled Chicken Sub'},
-    { id: 5, name: 'Grilled Veggie Sub'},
-    { id: 6, name: 'Ham Sub'},
-    { id: 7, name: 'Italian Sub'},
-    { id: 9, name: 'Meatball Sub'},
-    { id: 10, name: 'Philly Cheesesteak Sub'},
-    { id: 11, name: 'Roast Beef Sub'},
-    { id: 12, name: 'Sausage & Pepper Sub'},
-    { id: 13, name: 'Tuna Salad Sub'},
-    { id: 14, name: 'Turkey Breast Sub'},
-    { id: 15, name: 'Veggie Sub'}
-];

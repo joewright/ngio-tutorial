@@ -15,3 +15,5 @@ Run the debug server
 ```
 npm run start
 ```
+
+[Be amazed](http://127.0.0.1:3000)
