@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Sandwich } from "./sandwich";
+
 @Component({
     selector: 'my-app',
     template: `
@@ -11,10 +13,7 @@ import { Component } from '@angular/core';
         </ul>
         
         <div *ngIf="selectedSandwich">
-            <marquee behavior="alternate" direction="right"><h2>{{selectedSandwich.name}}</h2></marquee>
-            <label for="name">name:</label>
-            <input type="text" name="name" [(ngModel)]="selectedSandwich.name" />
-            <button (click)="onSelect()">&times;</button>
+            <my-sandwich-detail [sandwich]="selectedSandwich"></my-sandwich-detail>
         </div>
 
     `
@@ -26,11 +25,6 @@ export class AppComponent {
     onSelect(sandwich: Sandwich): void {
         this.selectedSandwich = sandwich;
     }
-}
-
-export class Sandwich {
-    id: number;
-    name: string;
 }
 
 const SANDWICHES: Sandwich[] = [
