@@ -22,6 +22,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
     title = 'Teeter';
     sandwiches = SANDWICHES;
+    selectedSandwich;
     onSelect(sandwich: Sandwich): void {
         this.selectedSandwich = sandwich;
     }
